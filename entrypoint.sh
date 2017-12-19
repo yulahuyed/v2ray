@@ -1,7 +1,8 @@
 cd /v2raybin
-if [ "${CONFIG}" ]
+if [ "${CONFIG_URL}" ]
 then
-    echo -e "${CONFIG}" > config.json
+    curl -L -o config.json "${CONFIG_URL}"
+    sed -i 's/${OID}/${UUID}/g' config.json
 else
     echo -e -n "$CONFIG_JSON1" > config.json
     echo -e -n "$UUID" >> config.json
