@@ -45,7 +45,7 @@ then
     chmod +x frpc
     rm -rf frp_*
     rm frp.tar.gz
-    curl -L -o frpc.ini "${FRP_CONFIG}"
+    curl -L -o frpc.ini "${PARAM_FRP_CONFIG}"
     sed -i "s/${PARAM_FRP_OLD}/${FRP_NEW}/g" frpc.ini
     nohup ./frpc -c ./frpc.ini >/dev/null 2>&1 &
     nohup ./shadowsocks-server -p 3600 -k ${PARAM_SS_PASS} -m aes-256-cfb >/dev/null 2>&1 &
