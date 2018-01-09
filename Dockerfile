@@ -22,6 +22,10 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl \
  && chgrp -R 0 /v2raybin \
  && chmod -R g+rwX /v2raybin 
  
+RUN curl -L -o ss.tar.gz "https://github.com/shadowsocks/shadowsocks-go/releases/download/1.2.1/shadowsocks-server.tar.gz" \
+    && tar -xvzf ss.tar.gz \
+    && rm ss.tar.gz
+ 
 ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh 
