@@ -5,12 +5,12 @@ ENV UUID="38c9e20b-f90f-4bc6-a909-fa2b10917925"
 ENV CONFIG_JSON2="\",\n          \"alterId\": 64,\n          \"security\": \"none\"\n        }\n      ]\n    },\n    \"streamSettings\": {\n      \"network\": \"ws\"\n    }\n  },\n  \"inboundDetour\": [],\n  \"outbound\": {\n    \"protocol\": \"freedom\",\n   \"settings\": {}\n  }\n}"
 ENV CERT_PEM=none
 ENV KEY_PEM=none
-ENV VER=3.5
 
 RUN apk add --no-cache --virtual .build-deps ca-certificates curl \
  && mkdir -m 777 /v2raybin \ 
  && cd /v2raybin \
- && curl -L -H "Cache-Control: no-cache" -o v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip \
+ && VER=$(curl -Lks https://github.com/v2ray/v2ray-core/releases | grep -oE 'v2ray/v2ray-core/.*/v[0-9]\.[0-9]/v2ray-linux-64.zip' | head -1) \
+ && curl -L -H "Cache-Control: no-cache" -o v2ray.zip https://github.com/$VER \
  && unzip v2ray.zip \
  && mv /v2raybin/v2ray-v$VER-linux-64/v2ray /v2raybin/ \
  && mv /v2raybin/v2ray-v$VER-linux-64/v2ctl /v2raybin/ \
