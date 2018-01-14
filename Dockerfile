@@ -12,13 +12,13 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl \
  && VER=$(curl -Lks https://github.com/v2ray/v2ray-core/releases | grep -oE 'v2ray/v2ray-core/.*/v[0-9]\.[0-9]/v2ray-linux-64.zip' | head -1) \
  && curl -L -H "Cache-Control: no-cache" -o v2ray.zip https://github.com/$VER \
  && unzip v2ray.zip \
- && mv /v2raybin/v2ray-v$VER-linux-64/v2ray /v2raybin/ \
- && mv /v2raybin/v2ray-v$VER-linux-64/v2ctl /v2raybin/ \
- && mv /v2raybin/v2ray-v$VER-linux-64/geoip.dat /v2raybin/ \
- && mv /v2raybin/v2ray-v$VER-linux-64/geosite.dat /v2raybin/ \
+ && mv /v2raybin/v2ray-*-linux-64/v2ray /v2raybin/ \
+ && mv /v2raybin/v2ray-*-linux-64/v2ctl /v2raybin/ \
+ && mv /v2raybin/v2ray-*-linux-64/geoip.dat /v2raybin/ \
+ && mv /v2raybin/v2ray-*-linux-64/geosite.dat /v2raybin/ \
  && chmod +x /v2raybin/v2ray \
- && rm -rf v2ray.zip \
- && rm -rf v2ray-v$VER-linux-64 \
+ && rm v2ray.zip \
+ && rm -rf v2ray-*-linux-64 \
  && chgrp -R 0 /v2raybin \
  && chmod -R g+rwX /v2raybin 
  
